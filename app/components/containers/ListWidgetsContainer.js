@@ -9,11 +9,10 @@ const ListWidgetsContainer = props => (
       ? <Weather
         {...props}
       />
-      : null
+      : <ListWidgets
+        {...props}
+      />
     }
-    <ListWidgets
-      {...props}
-    />
   </div>
 );
 

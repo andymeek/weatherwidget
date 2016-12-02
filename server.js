@@ -36,6 +36,14 @@ app.get('/widget', (req, res) => {
 });
 
 /**
+ * Serve embed HTML file for widget requests
+ */
+
+app.get('/embed', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'embed.html'));
+});
+
+/**
  * Always serve the widget HTML file for all other requests
  */
 

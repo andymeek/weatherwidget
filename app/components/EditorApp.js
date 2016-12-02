@@ -3,8 +3,8 @@ import AddWidgetsContainer from './containers/AddWidgetsContainer';
 import ListWidgetsContainer from './containers/ListWidgetsContainer';
 
 const EditorApp = () => (
-  <div className="container">
-    <h1 className="heading1__title">Widget editor</h1>
+  <div className="weather-container">
+    <h1 className="weather-container__title weather-container__title--h1">Widget editor</h1>
     <AddWidgetsContainer />
     <ListWidgetsContainer />
   </div>

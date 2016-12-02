@@ -2,8 +2,8 @@ import React, { PropTypes } from 'react';
 import Widget from './Widget';
 
 const ListWidgets = ({ widgets }) => (
-  <div className="list__widgets">
-    <h2 className="heading2__title">Widgets...</h2>
+  <div className="weather-container__list-widgets">
+    <h2 className="weather-container__title weather-container__title--h2">Your Widgets...</h2>
     <ul>
       {widgets.map((widget) => {
         const id = widget.id;
@@ -13,7 +13,7 @@ const ListWidgets = ({ widgets }) => (
             key={id}
           />
         );
-      })};
+      })}
     </ul>
   </div>
 );

@@ -6,8 +6,8 @@ let inputUnitElem;
 let inputWindElem;
 
 const AddWidgets = ({ onAddWidget }) => (
-  <div className="add__widgets">
-    <h2 className="heading2__title">Add Widgets...</h2>
+  <div className="weather-container__add-widgets">
+    <h2 className="weather-container__title weather-container__title--h2">Add Widgets...</h2>
     <form
       onSubmit={(e) => {
         e.preventDefault();
