@@ -10,7 +10,11 @@ To build all:
 
 To start server:
 
-    npm run start
+    npm start
+
+To run tests:
+
+    npm test
 
 ## To add/view/embed widgets
 

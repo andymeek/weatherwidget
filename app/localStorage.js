@@ -6,8 +6,7 @@ export const loadState = () => {
     }
     return JSON.parse(serializedState);
   } catch (error) {
-    console.log(`localStorage loadState error... ${error}`);
-    return undefined;
+    throw new Error('localStorage getItem error.');
   }
 };
 
@@ -16,7 +15,6 @@ export const saveState = (state) => {
     const serializedState = JSON.stringify(state);
     return localStorage.setItem('state', serializedState);
   } catch (error) {
-    console.log(`localStorage saveState error... ${error}`);
-    return undefined;
+    throw new Error('localStorage setItem error');
   }
 };

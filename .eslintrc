@@ -9,5 +9,12 @@
     "indent": ["error", 2],
     "no-console": 0,
     "react/jsx-filename-extension": [1, { "extensions": [".js"] }]
+  },
+  "globals": {
+    "window": true,
+    "document": true,
+    "expect": true,
+    "describe": true,
+    "it": true
   }
 }

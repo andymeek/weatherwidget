@@ -1,23 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import addWidget from '../../actions/widget-actions';
 import AddWidgets from '../views/AddWidgets';
 
-class AddWidgetsContainer extends Component {
-  componentDidMount() {
-    console.log('Did mount');
-  }
-
-  render() {
-    return (
-      <div>
-        <AddWidgets
-          {...this.props}
-        />
-      </div>
-    );
-  }
-}
+const AddWidgetsContainer = props => (
+  <div>
+    <AddWidgets
+      {...props}
+    />
+  </div>
+);
 
 const mapDispatchToProps = dispatch => ({
   onAddWidget: (widgetData) => {

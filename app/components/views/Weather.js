@@ -5,9 +5,13 @@ class Weather extends Component {
 
   constructor(props) {
     super(props);
-    const urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new window.URLSearchParams(window.location.search);
     // Get the widgetId from the querystring OR just use the first widget (inital state).
     const currentWidget = props.widgets.filter(widget => widget.id === (urlParams.getAll('widgetId')[0] || props.widgets[0].id));
+
+    if (currentWidget.length === 0) {
+      throw new Error('Oops, the widget doesn\'t exist. Try making one first by visiting the Editor: http://localhost:3000/editor');
+    }
 
     this.state = {
       currentWidgetData: {
@@ -32,18 +36,22 @@ class Weather extends Component {
             const weatherData = await response.json();
             this.setState({ weatherData });
           } catch (error) {
-            console.log(error);
+            throw new Error('Error fetching the data from Open Weather Map API');
           }
         })();
       });
     } catch (error) {
-      console.log(error);
+      throw new Error('Error getting your geolocation, please allow.');
     }
   }
 
   render() {
     if (this.state.weatherData !== null) {
-      return <WeatherInfo widgetData={this.state.currentWidgetData} weatherData={this.state.weatherData} />;
+      return (
+        <WeatherInfo
+          widgetData={this.state.currentWidgetData}
+          weatherData={this.state.weatherData}
+        />);
     }
     return <div>Loading...</div>;
   }

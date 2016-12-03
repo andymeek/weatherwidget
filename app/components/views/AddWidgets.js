@@ -26,7 +26,7 @@ const AddWidgets = ({ onAddWidget }) => (
       }}
     >
       <fieldset>
-        <div className="form__row">
+        <div className="weather-container__form__row">
           <label htmlFor="title">Title</label>
           <input
             type="text"
@@ -37,7 +37,7 @@ const AddWidgets = ({ onAddWidget }) => (
             }}
           />
         </div>
-        <div className="form__row">
+        <div className="weather-container__form__row">
           <label htmlFor="unit">Unit: metric or imperial (<small>Tick for imperial</small>)</label>
           <input
             type="checkbox"
@@ -48,8 +48,8 @@ const AddWidgets = ({ onAddWidget }) => (
             }}
           />
         </div>
-        <div className="form__row">
-          <label htmlFor="wind">Show Wind: true or false</label>
+        <div className="weather-container__form__row">
+          <label htmlFor="wind">Show Wind: true or false (<small>Tick for true</small>)</label>
           <input
             type="checkbox"
             id="wind"
@@ -58,8 +58,8 @@ const AddWidgets = ({ onAddWidget }) => (
             }}
           />
         </div>
-        <div className="form__row">
-          <input type="submit" id="submit" value="Submit" />
+        <div className="weather-container__form__row">
+          <input type="submit" id="submit" value="Submit" className="weather-container__form__button" />
         </div>
       </fieldset>
     </form>

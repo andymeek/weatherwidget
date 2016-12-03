@@ -12,7 +12,7 @@ class Widget extends Component {
   }
 
   generateEmbedCode() {
-    return `<iframe src="http://localhost:3000/widget?widgetId=${this.props.id}&unit=${this.props.unit}&wind=${this.props.wind}" width="500" height="500" frameborder="0" style="border:0" allowfullscreen></iframe>`;
+    return `<iframe src="http://localhost:3000/widget?widgetId=${this.props.id}" width="800" height="200" frameborder="0" style="border:0" allowfullscreen></iframe>`;
   }
 
   showCodeHandler() {
@@ -26,17 +26,17 @@ class Widget extends Component {
     const style = {
       display: isSelected ? 'block' : 'none',
     };
-    const embedLabel = isSelected ? 'Hide embed code' : 'Show embed code';
+    const embedLabel = isSelected ? '[ Hide embed code ]' : '[ Show embed code ]';
     const code = this.generateEmbedCode(this.props.id);
     return (
       <li className="weather-container__list-widgets-item">
-        <span>{this.props.title}
-        <a 
+        <span>{this.props.title}</span>
+        <a
           className="weather-container__show-embed-code"
           onClick={() => {
             this.showCodeHandler(this.props.id);
           }}
-        > [ {embedLabel} ]</a></span>
+        >{embedLabel}</a>
         <div className="weather-container__embed-code" style={style}>
           <span className="weather-container__embed-copy">Copy the following code onto your website...</span>
           <code>{code}</code>
@@ -49,8 +49,6 @@ class Widget extends Component {
 Widget.propTypes = {
   id: PropTypes.string,
   title: PropTypes.string,
-  wind: PropTypes.bool,
-  unit: PropTypes.string,
 };
 
 export default Widget;
