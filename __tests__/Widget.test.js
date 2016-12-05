@@ -13,7 +13,7 @@ describe('<Widget />', () => {
     },
   ];
 
-  const generateCodeCopy = `<iframe src="http://localhost:3000/widget?widgetId=${mockWidgets.id}" width="800" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>`;
+  const generateCodeCopy = `<iframe src="http://localhost:3000/widget?widgetId=${mockWidgets.id}" width="800" height="200" frameborder="0" style="border:0" allowfullscreen></iframe>`;
 
   const wrapper = shallow(<Widget id={mockWidgets[0].id} title={mockWidgets[0].title} />);
 
