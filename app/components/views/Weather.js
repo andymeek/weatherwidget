@@ -3,6 +3,21 @@ import WeatherInfo from './WeatherInfo';
 
 class Weather extends Component {
 
+  static getGeolocationData() {
+    return new Promise((resolve, reject) => {
+      try {
+        navigator.geolocation.getCurrentPosition((position) => {
+          resolve({
+            lat: position.coords.latitude,
+            long: position.coords.longitude,
+          });
+        });
+      } catch (error) {
+        reject(error);
+      }
+    });
+  }
+
   constructor(props) {
     super(props);
     const urlParams = new window.URLSearchParams(window.location.search);
@@ -21,28 +36,22 @@ class Weather extends Component {
       },
       weatherData: null,
     };
+
+    this.getWeatherData = this.getWeatherData.bind(this);
   }
 
   componentDidMount() {
-    try {
-      navigator.geolocation.getCurrentPosition((position) => {
-        const cords = {
-          lat: position.coords.latitude,
-          long: position.coords.longitude,
-        };
-        (async () => {
-          try {
-            const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${cords.lat}&lon=${cords.long}&appid=0b9bb6e55d1444e0519a94bc17c80f33&units=${this.state.currentWidgetData.unit}`);
-            const weatherData = await response.json();
-            this.setState({ weatherData });
-          } catch (error) {
-            throw new Error('Error fetching the data from Open Weather Map API');
-          }
-        })();
+    this.constructor.getGeolocationData()
+      .then(geoData => this.getWeatherData(geoData))
+      .then(weatherData => weatherData.json())
+      .then(weatherData => this.setState({ weatherData }))
+      .catch((error) => {
+        throw new Error(error);
       });
-    } catch (error) {
-      throw new Error('Error getting your geolocation, please allow.');
-    }
+  }
+
+  getWeatherData(geoData) {
+    return fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${geoData.lat}&lon=${geoData.long}&appid=${this.props.appId}&units=${this.state.currentWidgetData.unit}`);
   }
 
   render() {
@@ -57,11 +66,15 @@ class Weather extends Component {
   }
 }
 
+Weather.defaultProps = {
+  appId: '0b9bb6e55d1444e0519a94bc17c80f33',
+};
+
 Weather.propTypes = {
   widgets: PropTypes.arrayOf(React.PropTypes.shape({
-    id: React.PropTypes.string.isRequired,
-    unit: React.PropTypes.string.isRequired,
-    wind: React.PropTypes.bool.isRequired,
+    id: PropTypes.string.isRequired,
+    unit: PropTypes.string.isRequired,
+    wind: PropTypes.bool.isRequired,
   })).isRequired,
 };
 
